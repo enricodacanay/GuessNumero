@@ -1,0 +1,74 @@
+-<!DOCTYPE html>
+
+<html>
+
+<title>Lesson 4</title>
+
+<head> 
+	<link rel="stylesheet" href="css/jquery.mobile-1.2.0.min.css" />
+	<script src="js/jquery-1.8.2.min.js"> </script>
+	<script src="js/jquery.mobile-1.2.0.min.js"> </script>
+	<script> 
+		function hello()
+		{
+			var guess = document.getElementById('txtGuess').value;
+			var winNum = Math.floor(Math.random()*6+1);
+
+			if(document.getElementById('mtrLife').value==0)
+				return;	
+
+			document.getElementById('txtWinNum').innerHTML=winNum;
+
+			if(guess==winNum)
+			{
+				document.getElementById('txtResult').innerHTML="Result: WIN";
+				document.getElementById('mtrLife').value = document.getElementById('mtrLife').value + 10;
+
+
+			}
+			else
+			{
+				document.getElementById('txtResult').innerHTML="Result: LOSE";
+				document.getElementById('mtrLife').value = document.getElementById('mtrLife').value - 10;
+				if(document.getElementById('mtrLife').value==0)
+				{
+					document.getElementById('txtResult').innerHTML="GAME OVER";
+				}
+
+
+			}
+		}
+
+		function reset()
+		{
+			document.getElementById('mtrLife').value=100;
+			document.getElementById('txtResult').innerHTML="Result: ";
+
+		}
+
+			
+	</script>
+</head>
+
+<body>
+	<div data-role="page" data-theme="b">
+		<div data-role="content">
+			<h1 align="center">Guess Numero</h1>
+			<meter id="mtrLife" min="0" max="100" low="20" high="60" optimum="90" value="100" style="width:100%; height:25px"> </meter>
+			<input id="txtGuess" type="number" min="1" max="6" value="1"/>
+			<h1 id="txtWinNum">Winning Number</h1>
+			<h1 id="txtResult">Result</h1>
+		</div>
+
+		<div data-role="footer" data-position="fixed" data-theme="b">
+			<div data-role="navbar" >
+				<ul>
+					<li><a href="#" onClick="hello()">PLAY</a></li>
+					<li><a href="#" onClick="reset()">RESET</a></li>
+
+				</ul>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
